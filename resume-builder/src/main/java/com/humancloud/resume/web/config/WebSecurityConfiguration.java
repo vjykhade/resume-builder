@@ -39,6 +39,7 @@ public class WebSecurityConfiguration {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/createuser","/savedata","/deletedata/**","/alldata","/updatedata/**","/downloadpdf/**");
+        return (web) -> web.ignoring().requestMatchers("/createuser","/savedata","/deletedata/**","/alldata","/updatedata/**","/downloadpdf/**",
+                "/form","/skill/**","/softskills");
     }
 }

@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -24,6 +25,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/resume")
 public class ResumeMasterController {
 
     @Autowired
@@ -33,16 +35,16 @@ public class ResumeMasterController {
     private ResumeService resumeService;
 
     @PostMapping("/savedata")
-    public ResumeMasterEntity saveResumeData (@Valid @RequestBody ResumeMasterEntity resumeMasterEntity)
+    public ResumeMasterEntity saveResumeData (@Valid @RequestBody ResumeMasterEntity resumeMasterEntity, Principal principal)
     {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        resumeMasterEntity.setCreatedBy("admin");
+        resumeMasterEntity.setCreatedBy(principal.getName());
         resumeMasterEntity.setCreatedDate(simpleDateFormat.format(Date.from(Instant.now())));
         resumeMasterEntity.setWorkExperience(resumeMasterEntity.getWorkExperience().stream().map(rm->{
-            rm.setCreatedBy("admin");
+            rm.setCreatedBy(principal.getName());
             rm.setCreatedDate(simpleDateFormat.format(Date.from(Instant.now())));
             rm.getProjects().stream().map(p -> {
-                p.setCreatedBy("admin");
+                p.setCreatedBy(principal.getName());
                 p.setCreatedDate(simpleDateFormat.format(Date.from(Instant.now())));
                 return p;
             }).collect(Collectors.toList());

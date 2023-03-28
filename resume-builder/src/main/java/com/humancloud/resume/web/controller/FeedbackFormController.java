@@ -1,7 +1,6 @@
 package com.humancloud.resume.web.controller;
 
 import com.humancloud.resume.web.entity.InterviewFeedbackForm;
-import com.humancloud.resume.web.exceptionHandler.GlobalExceptionHandler;
 import com.humancloud.resume.web.service.FeedbackFormService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

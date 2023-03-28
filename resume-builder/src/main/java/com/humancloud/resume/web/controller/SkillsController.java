@@ -6,12 +6,14 @@ import com.humancloud.resume.web.repository.SoftSkillsRepository;
 import com.humancloud.resume.web.repository.TechnologyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/skill")
 public class SkillsController {
 
     @Autowired
@@ -20,7 +22,7 @@ public class SkillsController {
     @Autowired
     private SoftSkillsRepository softSkillsRepository;
 
-    @GetMapping("/skill")
+    @GetMapping("/getskill")
     public Technology findByName(@RequestParam String techName) {
         return technologyRepository.findByTechName(techName).get();
     }

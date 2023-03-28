@@ -76,6 +76,8 @@ public class AppConfig {
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
                 .requestMatchers("/users/**").hasAuthority("USER")
                 .requestMatchers("/resume/**").hasAnyAuthority("ADMIN","USER")
+                .requestMatchers("/skill/**").hasAnyAuthority("ADMIN","USER")
+                .requestMatchers("/form/**").hasAnyAuthority("ADMIN","USER")
                 .requestMatchers("/swagger-ui.html/**").permitAll()
                 //.requestMatchers("/swagger-ui/**", "/swagger-resources/**", "/v2/api-docs/**").permitAll()
                 .anyRequest().authenticated()

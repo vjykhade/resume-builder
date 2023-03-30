@@ -18,14 +18,8 @@ public class FeedbackFormController {
     private FeedbackFormService feedbackFormService;
 
     @PostMapping
-    public ResponseEntity<?> submitForm(@Valid @RequestBody InterviewFeedbackForm form) {
-        InterviewFeedbackForm feedbackForm = feedbackFormService.submitForm(form);
-        if (feedbackForm != null) {
-            return new ResponseEntity<>(feedbackForm, HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
+    public InterviewFeedbackForm submitForm(@Valid @RequestBody InterviewFeedbackForm form) {
+        return feedbackFormService.submitForm(form);
     }
 
 }
